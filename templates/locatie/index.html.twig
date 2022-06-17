@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locatie CRUD{% endblock %}
+
+{% block body %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <style>
+
+            body {
+                background-color: blue;
+            }
+
+    </style>
+
+    <h1 style="font-size:70px">Voeg een locatie toe</h1>
+
+    <table style="margin-top:3%" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Locatie</th>
+                <th>Beschrijving</th>
+                <th>Email</th>
+                <th>Telenr</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for locatie in locaties %}
+            <tr>
+                <td>{{ locatie.id }}</td>
+                <td>{{ locatie.locatie }}</td>
+                <td>{{ locatie.beschrijving }}</td>
+                <td>{{ locatie.email }}</td>
+                <td>{{ locatie.telenr }}</td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" href="{{ path('app_locatie_show', {'id': locatie.id}) }}">SHOW</a>
+                    <a class="btn btn-secondary btn-sm" href="{{ path('app_locatie_edit', {'id': locatie.id}) }}">EDIT</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary btn-lg" href="{{ path('app_locatie_new') }}">CREATE NEW</a>
+{% endblock %}
